@@ -81,12 +81,12 @@ def make_wsgi_app(app_config):
     baseplate.add_to_context("events_test", EventQueue("test"))
 {% endif -%}
 {%- if cookiecutter.integrations.memcache %}
-    memcache_pool = memcache_pool_from_config(app_config, prefix="memcache.")
-    baseplate.add_to_context("memcache", MemcacheContextFactory(memcache_pool))
+    memcache_pool = memcache.pool_from_config(app_config, prefix="memcache.")
+    baseplate.add_to_context("memcache", memcache.MemcacheContextFactory(memcache_pool))
 {% endif -%}
 {%- if cookiecutter.integrations.redis %}
-    redis_pool = pool_from_config(app_config, prefix="redis.")
-    baseplate.add_to_context("redis", RedisContextFactory(redis_pool))
+    redis_pool = redis.pool_from_config(app_config, prefix="redis.")
+    baseplate.add_to_context("redis", redis.RedisContextFactory(redis_pool))
 {% endif -%}
 {%- if cookiecutter.integrations.sqlalchemy %}
     engine = engine_from_config(app_config, prefix="database.")

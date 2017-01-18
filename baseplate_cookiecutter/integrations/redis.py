@@ -25,7 +25,7 @@ class RedisIntegration(Integration):
 
         "imports": {
             "external": [
-                "from baseplate.context.redis import pool_from_config, RedisContextFactory",
+                "from baseplate.context import redis",
             ],
         },
 

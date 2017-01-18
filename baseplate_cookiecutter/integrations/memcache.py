@@ -25,7 +25,7 @@ class MemcacheIntegration(Integration):
 
         "imports": {
             "external": [
-                "from baseplate.context.memcache import pool_from_config as memcache_pool_from_config, MemcacheContextFactory",
+                "from baseplate.context import memcache",
             ],
         },
 
