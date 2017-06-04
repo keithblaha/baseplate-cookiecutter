@@ -31,7 +31,7 @@ class cassandra {
   }
 
   package { 'cassandra':
-    ensure  => '2.2.7',
+    ensure  => '2.2.8',
     require => Package['openjdk-7-jre-headless'],
   }
 
