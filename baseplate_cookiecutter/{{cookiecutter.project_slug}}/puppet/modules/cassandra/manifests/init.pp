@@ -1,6 +1,4 @@
 class cassandra {
-  include cassandra::java
-
   file { '/etc/apt/sources.list.d/cassandra.sources.list':
     ensure  => file,
     owner   => 'root',
@@ -28,9 +26,13 @@ class cassandra {
     ],
   }
 
+  package { 'openjdk-7-jre-headless':
+    ensure => installed,
+  }
+
   package { 'cassandra':
     ensure  => '2.2.7',
-    require => Class['cassandra::java'],
+    require => Package['openjdk-7-jre-headless'],
   }
 
   service { 'cassandra':
