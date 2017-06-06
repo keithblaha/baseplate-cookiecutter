@@ -14,6 +14,7 @@ class Integration(object):
 def load_all():
     from .cassandra import CassandraIntegration
     from .events import EventsIntegration
+    from .hvac import HvacIntegration
     from .memcache import MemcacheIntegration
     from .redis import RedisIntegration
     from .sqlalchemy import SQLAlchemyIntegration
@@ -21,6 +22,7 @@ def load_all():
     return [
         CassandraIntegration(),
         EventsIntegration(),
+        HvacIntegration(),
         MemcacheIntegration(),
         RedisIntegration(),
         SQLAlchemyIntegration(),

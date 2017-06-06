@@ -20,6 +20,19 @@ To create schema in the database:
     baseplate-script example.ini {{ cookiecutter.module_name }}.models.cql:create_schema
 
 {%- endif %}
+{% if cookiecutter.integrations.hvac %}
+## Vault Initialization
+
+To configure vault backends and other persistent data:
+
+    baseplate-script example.ini {{ cookiecutter.module_name }}.models.vault:configure_vault
+
+NOTE: The Vault development server keeps stuff in-memory only, so it'll be lost
+if you reboot your development VM. This initialization step will be re-run
+automatically on boot in the dev environment via the Upstart job
+`configure-vault-schemas`.
+{%- endif %}
+
 ## Development
 
 ### Vagrant

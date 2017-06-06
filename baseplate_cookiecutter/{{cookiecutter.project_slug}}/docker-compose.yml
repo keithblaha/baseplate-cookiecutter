@@ -17,6 +17,9 @@ services:
             {%- if cookiecutter.integrations.redis %}
             - redis
             {%- endif %}
+            {%- if cookiecutter.integrations.hvac %}
+            - vault
+            {%- endif %}
         {%- endif %}
         restart: always
 {%- if cookiecutter.integrations.cassandra: %}
@@ -30,4 +33,11 @@ services:
 {%- if cookiecutter.integrations.redis: %}
     redis:
         image: redis
+{%- endif %}
+{%- if cookiecutter.integrations.hvac: %}
+    vault:
+        image: vault:0.7.3
+        environment:
+            VAULT_DEV_ROOT_TOKEN_ID: 'b4c6f298-3f80-11e7-8b88-5254001e7ad3'
+            SKIP_SETCAP: '1'
 {%- endif %}

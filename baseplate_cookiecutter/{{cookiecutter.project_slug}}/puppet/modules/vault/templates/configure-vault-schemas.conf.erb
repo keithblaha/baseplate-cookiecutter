@@ -1,0 +1,10 @@
+description "run the vault schema configuration script on boot since it only stores in memory"
+
+task
+
+start on started vault
+
+setuid <%= @user %>
+chdir <%= @project_path %>
+
+exec baseplate-script2 example.ini {{ cookiecutter.module_name }}.models.vault:configure_vault
