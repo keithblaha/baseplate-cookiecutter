@@ -106,7 +106,7 @@ def make_wsgi_app(app_config):
 {% endif -%}
 {%- if cookiecutter.integrations.sqlalchemy %}
     engine = engine_from_config(app_config, prefix="database.")
-    baseplate.add_to_context("db", SQLAlchemySessionContextFactory(engine))
+    baseplate.add_to_context("database", SQLAlchemySessionContextFactory(engine))
 {% endif -%}
 {%- if cookiecutter.framework == "thrift": %}
     handler = Handler()
