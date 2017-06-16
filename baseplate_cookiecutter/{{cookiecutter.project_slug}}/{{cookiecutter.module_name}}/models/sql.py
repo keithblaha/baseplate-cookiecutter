@@ -18,7 +18,7 @@ def create_schema(app_config):
 
     Run this with:
 
-        baseplate-script example.ini {{cookiecutter.module_name}}.models:create_schema
+        baseplate-script example.ini {{cookiecutter.module_name}}.models.sql:create_schema
 
     """
     engine = engine_from_config(app_config, prefix="database.")
