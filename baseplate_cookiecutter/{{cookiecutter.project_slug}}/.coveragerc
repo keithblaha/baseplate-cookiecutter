@@ -1,2 +1,2 @@
 [run]
-omit = {{cookiecutter.module_name}}/*_thrift/*.py
+omit = */{{cookiecutter.module_name}}/*_thrift/*.py
