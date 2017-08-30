@@ -51,8 +51,8 @@ class {{ cookiecutter.service_name }}(object):
         {{ cookiecutter.context_object }}.cassandra.execute("USE {{ cookiecutter.project_slug }}")
 {% endif -%}
 {%- if cookiecutter.integrations.events %}
-        event = Event("example_topic", "event_type")
-        {{ cookiecutter.context_object }}.events_production.put(event)
+        event = None  # Event(...) TODO: install the event schemas IDL
+        {{ cookiecutter.context_object }}.events_v2.put(event)
 {% endif -%}
 {%- if cookiecutter.integrations.hvac %}
         {{ cookiecutter.context_object }}.vault.is_initialized()
@@ -96,8 +96,7 @@ def make_wsgi_app(app_config):
     baseplate.add_to_context("cassandra", CQLMapperContextFactory(session))
 {% endif -%}
 {%- if cookiecutter.integrations.events %}
-    baseplate.add_to_context("events_production", EventQueue("production"))
-    baseplate.add_to_context("events_test", EventQueue("test"))
+    baseplate.add_to_context("events_v2", EventQueue("v2", event_serializer=serialize_v2_event))
 {% endif -%}
 {%- if cookiecutter.integrations.hvac %}
     hvac_factory = hvac_factory_from_config(app_config, secrets)
