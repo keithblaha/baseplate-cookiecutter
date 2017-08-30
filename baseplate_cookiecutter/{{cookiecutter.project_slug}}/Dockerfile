@@ -11,7 +11,7 @@ RUN apt-get update && \
         {% for package in cookiecutter.dependencies.apt: -%}
         {{ package }} \
         {% endfor -%}
-        python-setuptools
+        ;
 
 EXPOSE 9090
 WORKDIR /src
